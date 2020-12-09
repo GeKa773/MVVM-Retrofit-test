@@ -44,6 +44,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         String imagePath = "https://image.tmdb.org/t/p/w500/" + results.get(position).getPosterPath();
         Glide.with(context)
                 .load(imagePath)
+                .placeholder(R.drawable.progress_circle)
                 .into(holder.movieImageView);
 
     }
