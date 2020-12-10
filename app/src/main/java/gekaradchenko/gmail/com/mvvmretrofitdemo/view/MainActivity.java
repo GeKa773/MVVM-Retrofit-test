@@ -1,10 +1,11 @@
-package gekaradchenko.gmail.com.mvvmretrofitdemo;
+package gekaradchenko.gmail.com.mvvmretrofitdemo.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import gekaradchenko.gmail.com.mvvmretrofitdemo.R;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.adapter.ResultAdapter;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.model.MovieApiResponse;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.model.Result;
