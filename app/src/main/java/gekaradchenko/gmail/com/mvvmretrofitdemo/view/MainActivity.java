@@ -1,6 +1,7 @@
 package gekaradchenko.gmail.com.mvvmretrofitdemo.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.R;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.adapter.ResultAdapter;
+import gekaradchenko.gmail.com.mvvmretrofitdemo.databinding.ActivityMainBinding;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.model.MovieApiResponse;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.model.Result;
 import gekaradchenko.gmail.com.mvvmretrofitdemo.service.MovieApiService;
@@ -31,10 +33,14 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private MainActivityViewModel mainActivityViewModel;
 
+    private ActivityMainBinding activityMainBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         mainActivityViewModel = new ViewModelProvider
                 .AndroidViewModelFactory(getApplication())
@@ -42,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
         getPopularMovies();
 
-        swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout = activityMainBinding.swipeRefresh;
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                 getPopularMovies();
+                getPopularMovies();
             }
         });
     }
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = activityMainBinding.recyclerView;
         adapter = new ResultAdapter(this, results);
         if (getResources().getConfiguration().orientation ==
                 Configuration.ORIENTATION_PORTRAIT) {
